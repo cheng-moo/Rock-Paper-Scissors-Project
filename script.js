@@ -31,7 +31,13 @@ let buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
     button.addEventListener('click', choose);
 })
+let comScore = document.querySelector('.comScore');
+let playerScore = document.querySelector('.playerScore');
+let com = 0;
+let player = 0;
+//Ending Container
 const endGame = document.querySelector('.end');
+//Round Counter and where to store it
 let round = 1;
 let rounds = document.querySelector('.round');
 
@@ -51,14 +57,28 @@ function choose (e) {
         playerSelection = e.target.textContent;
     }
 
-    console.log(playRound(playerSelection.toLowerCase(), computerPlay()))
+    // console.log(playRound(playerSelection.toLowerCase(), computerPlay()))
     //Use this var to playRound to add the result to the new created resultText 
        resultText.textContent = playRound(playerSelection.toLowerCase(), computerPlay())
        //append the resultText in result element
         result.appendChild(resultText);
-        round++;
+        console.log(resultText.textContent);
+        ++round;
         console.log(round);
         rounds.textContent = `Round: ${round}`
+        if (resultText.textContent.includes('Lose!')) {
+            com++
+            comScore.textContent = com; 
+        } else if (resultText.textContent.includes('Win!')) {
+            player++
+            playerScore.textContent = player;
+        } else if (resultText.textContent.includes('Draw')) {
+            com++
+            comScore.textContent = com;
+            player++
+            playerScore.textContent = player;
+
+        }
     } else {
             this.removeEventListener('click', choose);
             endGame.classList.remove('hide');
