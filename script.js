@@ -31,7 +31,12 @@ let buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
     button.addEventListener('click', choose);
 })
+const endGame = document.querySelector('.end');
+let round = 1;
+let rounds = document.querySelector('.round');
+
 function choose (e) {
+    if (round < 5) {
     let resultText = document.createTextNode('')
     //empty the result text for each click
     result.textContent = ''
@@ -51,7 +56,16 @@ function choose (e) {
        resultText.textContent = playRound(playerSelection.toLowerCase(), computerPlay())
        //append the resultText in result element
         result.appendChild(resultText);
+        round++;
+        console.log(round);
+        rounds.textContent = `Round: ${round}`
+    } else {
+            this.removeEventListener('click', choose);
+            endGame.classList.remove('hide');
+            return;
+       }
 }
+
 // function game () {
 //     let round = 1
 //     let playerScore = 0;
