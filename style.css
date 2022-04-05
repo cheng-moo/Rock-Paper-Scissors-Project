@@ -1,8 +1,91 @@
 * {
     margin: 0 auto;
     padding: 0;
+    font-family: Oswald, 'Courier New', Courier, monospace;
+    color: #fff;
+}
+body {
+    width: 1440px; 
+    height: auto;
 }
 /* hidilng class */
 .hide {
     display: none;
+}
+.game-container {
+    display: grid;
+    height: 90vh;
+    width: 100%;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 300px 100px 300px;
+    grid-template-areas:
+    "s s r r r r r r r r r r"
+    "s s r r r r r r r r r r"
+    "btn btn btn btn btn btn btn btn btn btn btn btn";
+    background-color: hsl(217, 46%, 37%);
+    align-content: center;
+    position: relative;
+  }  
+.result {
+    grid-area: r;
+    grid-column: 5/8;
+    display: flex;
+    align-items: center;
+    word-spacing: 10px;
+    font-weight: 500;
+    font-size: 30px;
+    color: #fff;
+    background-color: #393c54f5;
+    height: 200px;
+    width: 400px;
+    margin-top: 50px;
+    justify-content: center;
+    box-shadow: 1px 3px 6px #000;
+    border-radius: 10px;
+    
+}
+.score-board {
+    grid-area: s;
+}
+.score-board h1 {
+    color: #00adff;
+}
+.buttons {
+    grid-area: btn;
+    grid-row: 2/3;
+    grid-column: 4/9;
+}
+.end {
+    grid-column: 5/8;
+    grid-row: 1/2;
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+}
+.round {
+    font-weight: 500;
+    font-size: 25px;
+    position: absolute;
+    left: 61%;
+    top: 17%;
+}
+
+button {
+    background-color: #393c54f5;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 1px 3px 6px #000;
+    font-size: 50px;
+    margin-left: 20px;
+
+}
+.score-board .com, .score-board .player {
+    font-weight: 500;
+    font-size: 25px;
+}
+.winner {
+    font-size: 40px;
+    margin-top: 20px;
+    
 }

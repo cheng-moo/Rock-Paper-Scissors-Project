@@ -26,6 +26,8 @@ function playRound (playerSelection, computerSelection) {
 // const playerSelection = 'rock';
 // const computerSelection = computerPlay();
 // console.log(playRound(playerSelection, computerSelection));
+let com = 0;
+let player = 0;
 let result = document.querySelector('.result');
 let buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
@@ -33,8 +35,7 @@ buttons.forEach(button => {
 })
 let comScore = document.querySelector('.comScore');
 let playerScore = document.querySelector('.playerScore');
-let com = 0;
-let player = 0;
+
 //Ending Container
 const endGame = document.querySelector('.end');
 //Round Counter and where to store it
@@ -42,6 +43,7 @@ let round = 1;
 let rounds = document.querySelector('.round');
 
 function choose (e) {
+    // console.log(com);
     if (round < 5) {
     let resultText = document.createTextNode('')
     //empty the result text for each click
@@ -62,9 +64,9 @@ function choose (e) {
        resultText.textContent = playRound(playerSelection.toLowerCase(), computerPlay())
        //append the resultText in result element
         result.appendChild(resultText);
-        console.log(resultText.textContent);
+        // console.log(resultText.textContent);
         ++round;
-        console.log(round);
+        // console.log(round);
         rounds.textContent = `Round: ${round}`
         if (resultText.textContent.includes('Lose!')) {
             com++
@@ -80,10 +82,33 @@ function choose (e) {
 
         }
     } else {
-            this.removeEventListener('click', choose);
-            endGame.classList.remove('hide');
-            return;
-       }
+        buttons.forEach(button => {
+            button.removeEventListener('click',choose);
+        })
+        endGame.classList.remove('hide');
+        endGame.appendChild(winner())
+        
+    }
+    lastComScore = com;
+    lastPlayerScore = player;
+}
+let lastPlayerScore;
+let lastComScore;
+console.log(com);
+console.log(lastPlayerScore)
+function winner () {
+    let winner = document.createElement('div');
+    winner.className = 'winner';
+    if (com > player) {
+        winner.textContent = 'You Lose! :(';
+        winner.style.color = "#a93030";
+    } else if (com < player) {
+        winner.textContent = 'You Win! :)';
+        winner.style.color = 'green'
+    } else if (com === player) {
+        winner.textContent = 'Draw';
+    }
+    return winner;
 }
 
 // function game () {
